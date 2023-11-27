@@ -1,2 +1,3 @@
 # react-webpack-emotion-boilerplate
-리액트 + 웹팩 + 이모션 보일러플레이트
+
+React + Webpack + Emotion + Recoil + Axios 보일러플레이트
