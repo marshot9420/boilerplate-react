@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/marshot9420/react-webpack-emotion-boilerplate/issues"
   },
-  "homepage": "https://github.com/marshot9420/react-webpack-emotion-boilerplate#readme"
+  "homepage": "https://github.com/marshot9420/react-webpack-emotion-boilerplate#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2"
+  }
 }
