@@ -1,6 +1,7 @@
 import webpack, { Configuration } from 'webpack';
 import path from 'path';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const DEV_ENV = 'development';
 const PROD_ENV = 'production';
@@ -21,6 +22,9 @@ const config: Configuration = {
     rules: [],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevMode ? DEV_ENV : PROD_ENV }),
   ],
   output: {
