@@ -37,7 +37,26 @@ const config: IConfiguration = {
   entry: `./${SOURCE_DIR}/index`,
   target: ['web', 'es5'],
   module: {
-    rules: [],
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: { browsers: ['IE 10'] },
+                debug: isDevMode,
+              },
+            ],
+            '@babel/preset-react',
+            '@babel/preset-typescript',
+          ],
+        },
+        exclude: path.resolve(__dirname, 'node_modules'),
+      },
+    ],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
