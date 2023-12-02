@@ -1,3 +1,3 @@
 # react-webpack-emotion-boilerplate
 
-React + Webpack + Emotion + Recoil + Axios 보일러플레이트
+React + React-Router-DOM + Webpack + Emotion + Recoil + React-Query + Axios 보일러플레이트
