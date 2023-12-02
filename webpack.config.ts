@@ -18,7 +18,9 @@ const isDevMode = process.env.NODE_ENV !== PROD_ENV;
 
 dotenv.config({ path: isDevMode ? '.env.development' : 'env.production' });
 
-const PORT = process.env.PORT;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_PREFIX: string = process.env.REACT_APP_API_PREFIX || '/';
+const PORT = process.env.REACT_APP_PORT;
 
 const SOURCE_DIR = 'src';
 const PUBLIC_DIR = 'public';
@@ -26,6 +28,16 @@ const OUTPUT_DIR = 'dist';
 
 interface IConfiguration extends WebpackConfig {
   devServer?: DevServerConfig;
+}
+
+const ENV: { [x: string]: string } = {
+  NODE_ENV: isDevMode ? DEV_ENV : PROD_ENV,
+};
+
+for (const key in process.env) {
+  if (key && key.startsWith('REACT_APP_')) {
+    ENV[key] = process.env[key] || '';
+  }
 }
 
 const config: IConfiguration = {
@@ -81,7 +93,7 @@ const config: IConfiguration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevMode ? DEV_ENV : PROD_ENV }),
+    new webpack.EnvironmentPlugin(ENV),
     new HtmlWebpackPlugin({
       template: `./${PUBLIC_DIR}/index.html`,
     }),
@@ -97,6 +109,13 @@ const config: IConfiguration = {
     static: { directory: path.resolve(__dirname, PUBLIC_DIR) },
     open: true,
     hot: true,
+    proxy: {
+      [API_PREFIX]: {
+        target: API_BASE_URL,
+        changeOrigin: true,
+        ws: true,
+      },
+    },
   },
 };
 
