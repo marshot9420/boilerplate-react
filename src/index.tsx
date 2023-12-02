@@ -3,7 +3,10 @@ import CreateDOM from 'react-dom/client';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { ThemeProvider } from '@emotion/react';
+
 import App from '@/App';
+import { theme } from '@/styles';
 
 const root = document.getElementById('root');
 
@@ -13,6 +16,8 @@ const appRoot = CreateDOM.createRoot(root);
 
 appRoot.render(
   <BrowserRouter>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>,
 );
