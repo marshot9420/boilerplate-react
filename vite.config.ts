@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 
+// 라이브러리
 import dotenv from 'dotenv';
 import path from 'path';
 
+// 플러그인
 import react from '@vitejs/plugin-react';
 
 const DEV_ENV = 'development';
