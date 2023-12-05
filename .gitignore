@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# Bundling
+/dist
+
 # misc
 .DS_Store
 
