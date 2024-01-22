@@ -4,9 +4,8 @@
   "description": "React + Webpack + Emotion + Recoil + Axios 보일러플레이트",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve --env development",
+    "build": "cross-env NODE_ENV=production TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack"
   },
   "repository": {
     "type": "git",
