@@ -1,13 +1,76 @@
 {
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["tsconfig.json", "tsconfig-for-vite-config.json"],
+    "project": ["tsconfig.json", "tsconfig-for-webpack-config.json"],
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "plugins": ["@typescript-eslint/eslint-plugin", "import"],
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": ["PascalCase"],
+        "prefix": ["Styled"],
+        "types": ["function"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "Props$",
+              "match": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I[A-Z]",
+              "match": true
+            }
+          },
+          {
+            "selector": "typeAlias",
+            "format": ["PascalCase"],
+            "suffix": ["Type"]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/styles/**/*.ts", "src/styles/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
+    }
   ]
 }
